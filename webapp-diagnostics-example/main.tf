@@ -11,7 +11,7 @@ provider "azurerm" {
   features {}
 }
 
-variable "main_resource_group_name" {
+variable "resource_group_name" {
   default = "cx-scan-web-rg"
 }
 
@@ -69,7 +69,7 @@ resource "azurerm_servicebus_topic" "output_topic" {
 # Use the synthetic_scan module for the main resource group
 module "synthetic_scan" {
   source                        = "../webapp-diagnostics/modules"
-  main_resource_group_name      = var.main_resource_group_name
+  resource_group_name      = var.resource_group_name
   location                      = var.location
   storage_account_name          = var.storage_account_name
   function_app_name             = var.function_app_name
